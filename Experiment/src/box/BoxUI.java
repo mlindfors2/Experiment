@@ -25,7 +25,6 @@ public class BoxUI extends JPanel {
 	private JButton btnLeft = new JButton("Left");
 	private JButton btnRight = new JButton("Right");
 	private final JLabel label = new JLabel("");
-	
 
 	/**
 	 * Launch the application.
@@ -47,26 +46,22 @@ public class BoxUI extends JPanel {
 	 */
 	public BoxUI() {
 		this.setPreferredSize(new Dimension(600, 600));
-		
+
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout());
 		contentPane.add(mainPanel, BorderLayout.CENTER);
 		contentPane.add(bottomPanel, BorderLayout.SOUTH);
 		bottomPanel.setLayout(new BorderLayout());
-		
+
 		this.add(btnLeft);
 		this.add(btnRight);
-	
+
 		btnLeft.addActionListener(new ButtonListener());
 		btnRight.addActionListener(new ButtonListener());
-	
-		controller.scale(100);
-		controller.rotate(Math.PI / 4, Math.atan(Math.sqrt(2)));
 
-		// new Timer(16, (ActionEvent e) -> {
-		// controller.rotate(Math.PI / 90, 0);
-		// repaint();
-		// }).start();
+		controller.scale(100);
+
+		controller.rotate(Math.PI / 4, Math.atan(Math.sqrt(2)));
 
 	}
 
@@ -81,27 +76,16 @@ public class BoxUI extends JPanel {
 	}
 
 	public void paintComponent(Graphics gg) {
-//		mainPanel.paintComponents(gg);
 		super.paintComponents(gg);
-		// System.out.println("Körs jag?");
-
 		gg.setColor(Color.BLACK);
-
-		// System.out.println(controller.getyf1());
 		Graphics2D g = (Graphics2D) gg;
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
 		drawLines(g);
-		// drawCircle(g);
-
 	}
 
 	public void drawLines(Graphics g) {
-		// First layer
 		g.clearRect(0, 50, 800, 800);
-
 		g.translate(getWidth() / 2, getHeight() / 2);
-
 		double[][] nodes = controller.getNodes();
 		int[][] edges = controller.getEdges();
 		for (int i = 0; i < 12; i++) {
@@ -113,7 +97,6 @@ public class BoxUI extends JPanel {
 		for (int i = 0; i < 8; i++) {
 			g.fillRect((int) Math.round(nodes[i][0]) - 4, (int) Math.round(nodes[i][1]) - 4, 8, 8);
 		}
-
 	}
 
 	private class ButtonListener implements ActionListener {
@@ -131,8 +114,6 @@ public class BoxUI extends JPanel {
 					controller.rotate(Math.PI / -90, 0);
 					repaint();
 				}).start();
-
-	
 
 			}
 		}
