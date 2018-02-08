@@ -18,8 +18,6 @@ public class BoxController {
 	
 	public BoxController() {
 		
-		
-
 	}
 
 	public void scale(double s) {

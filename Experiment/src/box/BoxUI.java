@@ -46,23 +46,17 @@ public class BoxUI extends JPanel {
 	 */
 	public BoxUI() {
 		this.setPreferredSize(new Dimension(600, 600));
-
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout());
 		contentPane.add(mainPanel, BorderLayout.CENTER);
 		contentPane.add(bottomPanel, BorderLayout.SOUTH);
 		bottomPanel.setLayout(new BorderLayout());
-
 		this.add(btnLeft);
 		this.add(btnRight);
-
 		btnLeft.addActionListener(new ButtonListener());
 		btnRight.addActionListener(new ButtonListener());
-
 		controller.scale(100);
-
 		controller.rotate(Math.PI / 4, Math.atan(Math.sqrt(2)));
-
 	}
 
 	private static void createAndShowUI() {
@@ -111,7 +105,7 @@ public class BoxUI extends JPanel {
 
 			} else if (e.getSource() == btnRight) {
 				new Timer(16, (ActionEvent ex) -> {
-					controller.rotate(Math.PI / -90, 0);
+					controller.rotate(Math.PI / -90, 0.1);
 					repaint();
 				}).start();
 
