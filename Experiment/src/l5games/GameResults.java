@@ -5,9 +5,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Random;
 
-public class GameResults {
+import javax.swing.SwingUtilities;
+
+public class GameResults extends Observable {
 	private ArrayList<Game> games = new ArrayList<Game>();
 	private SimulateGames thread;
 
@@ -52,7 +56,9 @@ public class GameResults {
 					    case 0: game.increaseGoal1(); break;
 					    case 1: game.increaseGoal2(); break;
 					}
-					System.out.println(game.toString());
+					setChanged();
+					notifyObservers(game);
+//					System.out.println(game.toString());
 				} catch(InterruptedException e) {
 					break;
 				}
@@ -68,5 +74,6 @@ public class GameResults {
 		} catch(InterruptedException e) {}
 		gr.stopSimulation();
 	}
+	
 }
 

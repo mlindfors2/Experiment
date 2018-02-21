@@ -1,13 +1,19 @@
 package l5alarm;
 
+import java.util.LinkedList;
+
 public class AlarmThreadB {
 	private Thread thread;
 	private long ms;
-	
+	private AlarmListener al;
+	private LinkedList<AlarmListener>list = new LinkedList<AlarmListener>();
 	public AlarmThreadB(long ms) {
 		this.ms = ms;
 	}
 	
+	public void addAlarmListener(AlarmListener al) {
+		list.add(al);
+	}
 	public void startAlarm() {
 		if(thread==null) {
 			thread = new AT();
@@ -22,7 +28,10 @@ public class AlarmThreadB {
 			}catch(InterruptedException e) {
 				
 			}
-			System.out.println("Nu är det dags för alarm!");
+			for (AlarmListener alarms : list) {
+				alarms.alarm();
+			}
+			
 			thread = null;
 		}
 	}
