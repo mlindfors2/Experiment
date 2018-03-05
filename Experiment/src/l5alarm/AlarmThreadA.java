@@ -2,7 +2,11 @@ package l5alarm;
 
 import java.util.Observable;
 
+<<<<<<< HEAD
 public class AlarmThreadA extends Observable{
+=======
+public class AlarmThreadA extends Observable {
+>>>>>>> branch 'master' of https://github.com/mlindfors2/Experiment
 	private Thread thread;
 	private long ms;
 	
@@ -26,7 +30,11 @@ public class AlarmThreadA extends Observable{
 			}
 			setChanged();
 			notifyObservers();
+<<<<<<< HEAD
 //			System.out.println("Nu är det dags för alarm!");
+=======
+			//System.out.println("Nu är det dags för alarm!");
+>>>>>>> branch 'master' of https://github.com/mlindfors2/Experiment
 			thread = null;
 		}
 	}

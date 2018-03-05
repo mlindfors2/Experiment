@@ -13,6 +13,7 @@ public class Controller {
 		frame.add(productUI);
 		frame.pack();
 		frame.setVisible(true);
+		productGenerator.addListener(new PL());
 	}
 		
 	public void start() {
@@ -40,5 +41,18 @@ public class Controller {
 				Controller controller = new Controller();
 			}
 		});		
+	}
+	private class PL implements ProductListener {
+
+		@Override
+		public void cprun(final String bajs) {
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					productUI.append(bajs);
+				}});
+				
+			
+		}
+		
 	}
 }

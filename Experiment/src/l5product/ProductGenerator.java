@@ -5,9 +5,14 @@ import java.util.Random;
 public class ProductGenerator {
 	private Multiplication thread;
 	private int maxProduct;
+	private ProductListener listener;
 	
 	public ProductGenerator(int maxProduct) {
 		this.maxProduct = Math.abs(maxProduct);
+	}
+	
+	public void addListener(ProductListener listener) {
+		this.listener = listener;
 	}
 	
 	public void start(int product) {
@@ -39,8 +44,9 @@ public class ProductGenerator {
 				factor1 = rand.nextInt(product)+1;
 				factor2 = rand.nextInt(product)+1;
 				res = factor1*factor2;
-				if(res==product) {
-					System.out.println(factor1+"*"+factor2+"="+product);
+				if(res==product && listener!=null) {
+					listener.cprun(factor1+"*"+factor2+"="+product);
+					//	System.out.println(factor1+"*"+factor2+"="+product);
 				}
 			}
 			thread=null;
