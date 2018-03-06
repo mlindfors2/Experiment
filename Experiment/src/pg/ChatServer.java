@@ -127,11 +127,12 @@ public class ChatServer {
 
 	private class Worker extends Thread {
 		public void run() {
-			if (!Thread.interrupted()) {
+			while (!Thread.interrupted()) {
 				try {
 					buffer.get().run();
 				} catch (Exception e) {
 					System.out.println("Worker/run() #8 " + e.getMessage());
+					break;
 				}
 			}
 		}

@@ -3,7 +3,7 @@ package pg;
 public class Mainpg {
 	public static void main(String[] args) {
 //		ChatServer cs = new ChatServer(5000,10);
-		ServerController sc = new ServerController(5000,5000);
+		ServerController sc = new ServerController(5000,500);
 		
 		for (int i = 0; i<5000 ; i ++) {
 			String name = "Pelle" + i;
