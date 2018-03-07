@@ -108,6 +108,8 @@ public class ChatServer {
 					output.flush();
 				} else if (response instanceof Message) {
 					message = (Message) response;
+					output.writeObject(message);
+					output.flush();
 				} else {
 					// Något gick helt åt helvete.
 				}

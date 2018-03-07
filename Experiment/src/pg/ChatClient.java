@@ -13,12 +13,12 @@ public class ChatClient {
 	private Connection connection;
 	boolean isConnected = false;
 	private UserList users;
-	
+
 	public ChatClient(String ip, int port, String clientName) {
 		this.ip = ip;
 		this.port = port;
 		this.connect(clientName);
-		
+
 	}
 
 	public void connect(String clientName) {
@@ -27,15 +27,25 @@ public class ChatClient {
 				socket = new Socket(ip, port);
 				connection = new Connection(socket, clientName);
 				connection.start();
+				
 			} catch (IOException e) {
 				System.out.println("ChatClient/connect() #4 " + e.getMessage());
 			}
 		}
 	}
 
-//	public boolean isConnected() {
-//		return isConnected;
-//	}
+	public void startStressTest() {
+		try {
+			connection.testSendAndReceiveMessage();
+		} catch (ClassNotFoundException e) {
+
+		} catch (IOException e) {
+		}
+	}
+
+	// public boolean isConnected() {
+	// return isConnected;
+	// }
 
 	private class Connection extends Thread {
 		private ObjectOutputStream output;
@@ -48,7 +58,18 @@ public class ChatClient {
 			output = new ObjectOutputStream(socket.getOutputStream());
 			output.flush();
 			input = new ObjectInputStream(socket.getInputStream());
-			this.user = new User(clientName, (int)Math.random()*1000);
+			this.user = new User(clientName, (int) Math.random() * 1000);
+		}
+
+		// Stresstest med meddelanden
+		public void testSendAndReceiveMessage() throws ClassNotFoundException, IOException {
+			try {
+				output.writeObject(new Message("Testmeddelande"));
+				output.flush();
+			} catch (IOException e) {
+			}
+			Message response = (Message) input.readObject();
+			System.out.println("Svar från server: " + response.getText());
 		}
 
 		public void run() {
@@ -67,10 +88,10 @@ public class ChatClient {
 					if (response instanceof UserList) {
 						users = (UserList) response;
 						System.out.println("Användarlista ankommit från server ");
-//						for (int i=0;i<users.getUserList().numberOfUsers();i++)
-//						System.out.println("#"+i + " " + users.getUserList().getUser(i).getName());
+						// for (int i=0;i<users.getUserList().numberOfUsers();i++)
+						// System.out.println("#"+i + " " + users.getUserList().getUser(i).getName());
 
-						isConnected=true;
+						isConnected = true;
 					}
 				} catch (Exception e) {
 					System.out.println("Connection/run() #6 " + e.getMessage());
