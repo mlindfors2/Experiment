@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.Buffer;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 public class ChatServer {
@@ -14,15 +15,20 @@ public class ChatServer {
 	private int numberOfWorkers;
 	private Buffer<Runnable> buffer = new Buffer<Runnable>();
 	private LinkedList<Worker> workers;
+	HashMap<User,ClientHandler> hashMap;
 	
 
 	public ChatServer(int port, int numberOfWorkers, ServerController sc) {
 		this.numberOfWorkers = numberOfWorkers;
 		this.sc = sc;
+		hashMap = new HashMap<User,ClientHandler>();
 		new Connection(port).start();
 		start();
 	}
-
+	 public HashMap<User,ClientHandler> getHashMap() {
+		 return hashMap;
+	 }
+	
 	public void start() {
 		Worker worker;
 		if (workers == null) {
@@ -61,11 +67,13 @@ public class ChatServer {
 			Socket socket = null;
 			System.out.println("Server startar upp");
 			try (ServerSocket serversocket = new ServerSocket(port)) {
-				System.out.println("Server startad på port " + serversocket.getLocalPort());
+				System.out.println("Server startad pï¿½ port " + serversocket.getLocalPort());
 				while (true) {
 					socket = serversocket.accept();
 					// clients.add(new ClientHandler(socket));
-					buffer.put(new ClientHandler(socket));
+					ClientHandler cH = new ClientHandler(socket);
+					buffer.put(cH);
+					
 				}
 			} catch (IOException e) {
 				System.out.println("Connection/Run() #1" + e.getMessage());
@@ -90,20 +98,23 @@ public class ChatServer {
 					ObjectInputStream input = new ObjectInputStream(socket.getInputStream())) {
 				try {
 					output.flush();
-					System.out.println("Server väntar på information från klienter");
+					System.out.println("Server vï¿½ntar pï¿½ information frï¿½n klienter");
 					response = input.readObject();
 					System.out.println("Server mottagit ett objekt");
 				} catch (ClassNotFoundException e) {
 				}
-				// inloggning av ny användare
+				// inloggning av ny anvï¿½ndare
 				if (response instanceof User) {
 					user = (User) response;
-					System.out.println(user.getName() + " loggar in på servern ");
+					hashMap.put(user, this);
+					System.out.println("storlek hashmap" + hashMap.size());
+					System.out.println("storlek buffer: " + buffer.size());
+					System.out.println(user.getName() + " loggar in pï¿½ servern ");
 					sc.getUserList().addUser(user);
 					
 					System.out.println("Antal klienter anslutna till servern: " + sc.getUserList().numberOfUsers());
 					
-					System.out.println("Server försöker skicka tillbaka användarlista till klienten");
+					System.out.println("Server fï¿½rsï¿½ker skicka tillbaka anvï¿½ndarlista till klienten");
 					output.writeObject(sc.getUserList());
 					output.flush();
 				} else if (response instanceof Message) {
@@ -111,7 +122,7 @@ public class ChatServer {
 					output.writeObject(message);
 					output.flush();
 				} else {
-					// Något gick helt åt helvete.
+					// Nï¿½got gick helt ï¿½t helvete.
 				}
 
 			} catch (IOException e) {

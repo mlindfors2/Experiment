@@ -1,11 +1,12 @@
 package pg;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+
 
 public class UserList implements java.io.Serializable {
-	private LinkedList<User> users;
+	private ArrayList<User> users;
 	public UserList() {
-		users = new LinkedList<User>();
+		users = new ArrayList<User>();
 	}
 	public  synchronized int numberOfUsers() {
 		return users.size();
@@ -22,6 +23,7 @@ public class UserList implements java.io.Serializable {
 	}
 	public synchronized User getUser(int i) {
 		return users.get(i);
+		
 	}
 	
 }

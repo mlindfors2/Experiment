@@ -1,10 +1,14 @@
 package pg;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+
+
 
 public class ServerController {
 	private ChatServer chatServer;
 	private UserList userList;
+	
 
 	public ServerController(int port, int numOfWorkers) {
 		this.chatServer = new ChatServer(port, numOfWorkers, this);

@@ -61,21 +61,12 @@ public class ChatClient {
 			this.user = new User(clientName, (int) Math.random() * 1000);
 		}
 
-		// Stresstest med meddelanden
-		public void testSendAndReceiveMessage() throws ClassNotFoundException, IOException {
-			try {
-				output.writeObject(new Message("Testmeddelande"));
-				output.flush();
-			} catch (IOException e) {
-			}
-			Message response = (Message) input.readObject();
-			System.out.println("Svar från server: " + response.getText());
-		}
+	
 
 		public void run() {
 			if (!isConnected) {
 				try {
-					System.out.println("Försöker skicka användare");
+					System.out.println("Fï¿½rsï¿½ker skicka anvï¿½ndare");
 					output.writeObject(user);
 					output.flush();
 				} catch (IOException e) {
@@ -83,11 +74,11 @@ public class ChatClient {
 				}
 
 				try {
-					System.out.println("Klient väntar på svar från server");
+					System.out.println("Klient vï¿½ntar pï¿½ svar frï¿½n server");
 					Object response = input.readObject();
 					if (response instanceof UserList) {
 						users = (UserList) response;
-						System.out.println("Användarlista ankommit från server ");
+						System.out.println("Anvï¿½ndarlista ankommit frï¿½n server ");
 						// for (int i=0;i<users.getUserList().numberOfUsers();i++)
 						// System.out.println("#"+i + " " + users.getUserList().getUser(i).getName());
 
