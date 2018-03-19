@@ -24,6 +24,10 @@ public class Card {
 
 	public String toString() {
 		String res;
+		if (card>10) {
+			card=10;
+		}
+		
 		if (color == 0) {
 			res = "Spader"; 
 		}

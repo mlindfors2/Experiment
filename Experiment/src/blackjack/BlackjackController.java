@@ -64,6 +64,7 @@ public class BlackjackController {
 		if (choice == 2) {
 			System.out.println(humanPlayer.getName()+ " visar: " + humanPlayer.getCard(0) + " och " + humanPlayer.getCard(1) + " och blir totalt: "+ humanPlayer.getTotalValue());
 			System.out.println(computerPlayer.getName()+  " visar: " + computerPlayer.getCard(0) + " och " + computerPlayer.getCard(1) + " och blir totalt: "+ computerPlayer.getTotalValue());
+			System.out.println(computerPlayer.getName()+  " visar: " + computerPlayer.getCard(0) + " och " + computerPlayer.getCard(1) + " och blir totalt: "+ computerPlayer.getTotalValue());
 		}
 		if (choice == 3) {
 			humanPlayer.receiveCard(deck.drawCard());
