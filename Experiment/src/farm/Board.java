@@ -70,9 +70,9 @@ public class Board extends JPanel implements ActionListener {
 		setDoubleBuffered(true);
 		loadImages();
 		addBarn(new Barn(100, 100));
-		addBarn(new Barn(100,380));
-		addBarn(new Barn(380,100));
-		addBarn(new Barn(380,380));
+		addBarn(new Barn(100, 380));
+		addBarn(new Barn(380, 100));
+		addBarn(new Barn(380, 380));
 		// timer = new Timer(40, this);
 		timer = new Timer(15, this);
 		timer.start();
@@ -101,7 +101,6 @@ public class Board extends JPanel implements ActionListener {
 		for (int i = 0; i < animalList.size(); i++) {
 			animalList.get(i).setRestrictedAreaOutBound(barn.getX(), barn.getY(), barn.getX() + buildingsize,
 					barn.getY() + buildingsize);
-
 		}
 	}
 
@@ -152,12 +151,13 @@ public class Board extends JPanel implements ActionListener {
 		if (grid) {
 			drawGrid(g);
 		}
-		
-		
+
 	}
+
 	public void grid(boolean status) {
 		this.grid = status;
 	}
+
 	public void drawGrid(Graphics2D g) {
 		int gridSize = max_x / 20;
 		boolean onBuilding = false;
@@ -232,28 +232,27 @@ public class Board extends JPanel implements ActionListener {
 		for (int i = 0; i < animalList.size(); i++) {
 			if (animalList.get(i) instanceof Cow) {
 				Cow cow = (Cow) animalList.get(i);
+				Image cowAnimation = null;
 				if (cow.getX_direction() < 0) {
 					if (cow.getAnimation() == 0) {
-						g.drawImage(cowleft1, cow.getX(), cow.getY(), cow.getX() + animalsize, cow.getY() + animalsize,
-								0, 0, 2120, 1800, this);
+						cowAnimation = cowleft1;
 					} else if (cow.getAnimation() == 1) {
-						g.drawImage(cowleft2, cow.getX(), cow.getY(), cow.getX() + animalsize, cow.getY() + animalsize,
-								0, 0, 2120, 1800, this);
+						cowAnimation = cowleft2;
 					} else if (cow.getAnimation() == 2) {
-						g.drawImage(cowleft3, cow.getX(), cow.getY(), cow.getX() + animalsize, cow.getY() + animalsize,
-								0, 0, 2120, 1800, this);
+						cowAnimation = cowleft3;
 					}
+					g.drawImage(cowAnimation, cow.getX(), cow.getY(), cow.getX() + animalsize, cow.getY() + animalsize,
+							0, 0, 2120, 1800, this);
 				} else if (cow.getX_direction() > 0) {
 					if (cow.getAnimation() == 0) {
-						g.drawImage(cowright1, cow.getX(), cow.getY(), cow.getX() + animalsize, cow.getY() + animalsize,
-								0, 0, 2120, 1800, this);
+						cowAnimation = cowright1;
 					} else if (cow.getAnimation() == 1) {
-						g.drawImage(cowright2, cow.getX(), cow.getY(), cow.getX() + animalsize, cow.getY() + animalsize,
-								0, 0, 2120, 1800, this);
+						cowAnimation = cowright2;
 					} else if (cow.getAnimation() == 2) {
-						g.drawImage(cowright3, cow.getX(), cow.getY(), cow.getX() + animalsize, cow.getY() + animalsize,
-								0, 0, 2120, 1800, this);
+						cowAnimation = cowright3;
 					}
+					g.drawImage(cowAnimation, cow.getX(), cow.getY(), cow.getX() + animalsize, cow.getY() + animalsize,
+							0, 0, 2120, 1800, this);
 				}
 				cow.nextAnimation();
 			} else if (animalList.get(i) instanceof Pig) {

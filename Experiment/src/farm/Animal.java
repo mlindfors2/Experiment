@@ -19,6 +19,7 @@ public class Animal {
 	private int animation = 0;
 	private RestrictedArea restrictedArea;
 	private Random rand = new Random();
+	int cp = 0;
 
 	/**
 	 * Constructor that randomize the direction of the animals movement.
@@ -50,11 +51,9 @@ public class Animal {
 	 */
 	public Animal() {
 		restrictedArea = new RestrictedArea();
-		do {
 			this.x = rand.nextInt(800);
 			this.y = rand.nextInt(800);
-		} while (!restrictedArea.check(x, y));
-
+					
 		while (x_direction == 0 || y_direction == 0) {
 			x_direction = rand.nextInt(3) - 1;
 			y_direction = rand.nextInt(3) - 1;
@@ -141,15 +140,15 @@ public class Animal {
 	 * Method that moves the animal, but when it reach a border it will change
 	 * direction.
 	 */
-	public void move() { // X & Y values = board max -80
-		if (!restrictedArea.check(x + x_direction, y + y_direction)) {
-			if (!restrictedArea.check(x + (x_direction * -1), y + y_direction)) {
+	public void move() { 
+		if (!restrictedArea.checkMovement(x + x_direction, y + y_direction)) {
+			if (!restrictedArea.checkMovement(x + (x_direction * -1), y + y_direction)) {
 				setY_direction(getY_direction() * -1);
 				if (rand.nextInt(4) == 0) { // 25% chance that it change X direction as well for more randomness in
 											// movement.
 					setX_direction(getX_direction() * -1);
 				}
-			} else if (!restrictedArea.check(x + x_direction, (y + y_direction * -1))) {
+			} else if (!restrictedArea.checkMovement(x + x_direction, (y + y_direction * -1))) {
 				setX_direction(getX_direction() * -1);
 				if (rand.nextInt(4) == 0) {// 25% chance that it change Y direction as well for more randomness in
 											// movement.
