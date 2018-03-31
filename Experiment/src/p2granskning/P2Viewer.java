@@ -20,8 +20,7 @@ public class P2Viewer extends JPanel{
 		lblIcon.setOpaque(true);
 		add(lblIcon);
 		setPreferredSize(new Dimension(width,height));
-		JPanel jp = new JPanel();
-		jp.re
+		JPanel jp = new JPanel();		
 	}
 
 	public P2Viewer(IconClient iconClient, int width, int height) {

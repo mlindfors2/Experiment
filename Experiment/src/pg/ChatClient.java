@@ -34,15 +34,15 @@ public class ChatClient {
 		}
 	}
 
-	public void startStressTest() {
-		try {
-			connection.testSendAndReceiveMessage();
-		} catch (ClassNotFoundException e) {
-
-		} catch (IOException e) {
-		}
-	}
-
+//	public void startStressTest() {
+//		try {
+////			connection.testSendAndReceiveMessage();
+//		} catch (ClassNotFoundException e) {
+//
+//		} catch (IOException e) {
+//		}
+//	}
+//
 	// public boolean isConnected() {
 	// return isConnected;
 	// }

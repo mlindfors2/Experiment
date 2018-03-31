@@ -45,6 +45,7 @@ public class BoxUI extends JPanel {
 	 * Create the frame.
 	 */
 	public BoxUI() {
+		this.setOpaque(false);
 		this.setPreferredSize(new Dimension(600, 600));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout());
@@ -70,7 +71,7 @@ public class BoxUI extends JPanel {
 	}
 
 	public void paintComponent(Graphics gg) {
-		super.paintComponents(gg);
+		super.paintComponent(gg);
 		gg.setColor(Color.BLACK);
 		Graphics2D g = (Graphics2D) gg;
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -78,7 +79,7 @@ public class BoxUI extends JPanel {
 	}
 
 	public void drawLines(Graphics g) {
-		g.clearRect(0, 50, 800, 800);
+//		g.clearRect(0, 50, 800, 800);
 		g.translate(getWidth() / 2, getHeight() / 2);
 		double[][] nodes = controller.getNodes();
 		int[][] edges = controller.getEdges();
@@ -105,7 +106,7 @@ public class BoxUI extends JPanel {
 
 			} else if (e.getSource() == btnRight) {
 				new Timer(16, (ActionEvent ex) -> {
-					controller.rotate(Math.PI / -90, 0.1);
+					controller.rotate(Math.PI / -90, 0.0);
 					repaint();
 				}).start();
 
