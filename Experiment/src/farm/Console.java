@@ -72,15 +72,23 @@ public class Console extends JPanel implements KeyListener {
 
 		case "add barn":
 			x = Integer.parseInt(JOptionPane.showInputDialog(null, "x coordinate"));
-			y = Integer.parseInt(JOptionPane.showInputDialog(null, "x coordinate"));
-			mainBoard.addBarn(new Barn(x,y));
+			y = Integer.parseInt(JOptionPane.showInputDialog(null, "y coordinate"));
+			mainBoard.addBarn(new Barn(x, y));
 			break;
-			// TODO add new commands here !! Don't forget break :)
+		// TODO add new commands here !! Don't forget break :)
 		case "grid on":
 			mainBoard.grid(true);
 			break;
 		case "grid off":
 			mainBoard.grid(false);
+			break;
+		case "add fence":
+			int x1 = Integer.parseInt(JOptionPane.showInputDialog(null, "First x coordinate"));
+			int y1 = Integer.parseInt(JOptionPane.showInputDialog(null, "First y coordinate"));
+			int x2 = Integer.parseInt(JOptionPane.showInputDialog(null, "Second x coordinate"));
+			int y2 = Integer.parseInt(JOptionPane.showInputDialog(null, "Second x coordinate"));
+			mainBoard.addFence(new Fence(x1, y1, x2, y2));
+			break;
 		default:
 			write("NOT a valdid command!" + System.lineSeparator() + "Available commands:");
 			for (String cmd : commands) {

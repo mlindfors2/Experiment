@@ -36,7 +36,7 @@ public class Building {
 		restrictedArea.addOutBoundBorder(x1, y1, x2, y2);
 	}
 
-	public RestrictedArea getRestricedArea() {
+	public RestrictedArea getRestrictedArea() {
 		return restrictedArea;
 	}
 }

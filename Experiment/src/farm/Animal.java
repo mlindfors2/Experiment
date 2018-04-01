@@ -37,9 +37,7 @@ public class Animal {
 			x_direction = rand.nextInt(3) - 1;
 			y_direction = rand.nextInt(3) - 1;
 		}
-
 	}
-
 	/**
 	 * Constructor that randomize the location and direction of the animals
 	 * movement.
