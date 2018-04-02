@@ -1,5 +1,7 @@
 package farm;
 
+import java.awt.Image;
+
 public class Building {
 	private int x;
 	private int y;
@@ -38,5 +40,8 @@ public class Building {
 
 	public RestrictedArea getRestrictedArea() {
 		return restrictedArea;
+	}
+	public Image getImage() {
+		return null;
 	}
 }

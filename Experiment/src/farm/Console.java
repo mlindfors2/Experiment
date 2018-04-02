@@ -73,7 +73,7 @@ public class Console extends JPanel implements KeyListener {
 		case "add barn":
 			x = Integer.parseInt(JOptionPane.showInputDialog(null, "x coordinate"));
 			y = Integer.parseInt(JOptionPane.showInputDialog(null, "y coordinate"));
-			mainBoard.addBarn(new Barn(x, y));
+			mainBoard.addBuilding(new Barn(x, y));
 			break;
 		// TODO add new commands here !! Don't forget break :)
 		case "grid on":

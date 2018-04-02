@@ -1,5 +1,6 @@
 package farm;
 
+import java.awt.Image;
 import java.util.Random;
 
 /**
@@ -49,8 +50,8 @@ public class Animal {
 	 */
 	public Animal() {
 		restrictedArea = new RestrictedArea();
-			this.x = rand.nextInt(800);
-			this.y = rand.nextInt(800);
+			this.x = rand.nextInt(800-40);
+			this.y = rand.nextInt(800-40);
 					
 		while (x_direction == 0 || y_direction == 0) {
 			x_direction = rand.nextInt(3) - 1;
@@ -187,6 +188,10 @@ public class Animal {
 
 	public RestrictedArea getRestricedArea() {
 		return restrictedArea;
+	}
+	public Image getNextAnimation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
