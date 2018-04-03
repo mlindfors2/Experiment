@@ -97,6 +97,7 @@ public class Board extends JPanel implements ActionListener {
 					building.getY() + buildingsize);
 		}
 	}
+	
 
 	/**
 	 * Remove an animal from the list with animals.
@@ -140,6 +141,7 @@ public class Board extends JPanel implements ActionListener {
 		drawEdges(g);
 		drawAnimals(g);
 		drawBuildings(g);
+		
 		if (grid) {
 			drawGrid(g);
 		}
@@ -252,7 +254,7 @@ public class Board extends JPanel implements ActionListener {
 
 	public void drawBorder(Graphics2D g, int x1, int y1, int x2, int y2) {
 		g.setColor(Color.BLACK);
-		g.drawRect(x1, y1, x2 - x1, y2 - y1);
+		g.drawRect(x1, y1, x2 - x1, y2 - y1);		
 	}
 
 	/**
